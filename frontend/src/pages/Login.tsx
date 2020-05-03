@@ -15,6 +15,7 @@ import { Link, RouteComponentProps } from 'react-router-dom'
 import { AppContext, ActionTypes } from '../context/appContext'
 import { InputChangeEventDetail } from "@ionic/core";
 import wretcher from '../wretcher';
+import wretch from "wretch";
 
 // Images
 import logo from '../assets/img/logo.png';
@@ -36,6 +37,7 @@ const Login: React.SFC<RouteComponentProps> = (props) => {
 			// TODO: get authorization token
 			await wretcher
 				.url('/api/login')
+				.options({ credentials: "include", mode: "cors" })
 				.post({ email, password })
 				.json(data => {
 					console.log(data);
@@ -70,7 +72,7 @@ const Login: React.SFC<RouteComponentProps> = (props) => {
 						<br />
 						<br />
 						<br />
-						<IonImg src={logo} alt="logo"/>
+						<IonImg src={logo} alt="StoreStash logo"/>
 					</IonCol>
 				</IonRow>
 				<IonRow justify-content-center>
